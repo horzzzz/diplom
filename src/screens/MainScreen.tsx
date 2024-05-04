@@ -9,7 +9,7 @@ const MainScreen: React.FC = () => {
 
   return (
     <View>
-      <Text>Notification Screen</Text>
+      <Text>MainScreen</Text>
     </View>
   );
 };
