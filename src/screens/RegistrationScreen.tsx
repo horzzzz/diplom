@@ -12,7 +12,7 @@ const RegistrtationScreen: React.FC = () => {
   return (
     <View>
       <Text>RegistrationScreen</Text>
-      <Button title="Go to ..." onPress={navigateToMainScreen} />
+      <Button title="Go to MainScreen" onPress={navigateToMainScreen} />
     </View>
   );
 };
