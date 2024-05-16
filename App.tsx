@@ -52,7 +52,12 @@ const App: React.FC = () => {
     <View style = {{flex: 1}}>
     <NavigationContainer>
       <Stack.Navigator >
-        <Stack.Screen name="RegistrationScreen" component={RegistrtationScreen} />
+      <Stack.Screen name="RegistrationScreen" component={RegistrtationScreen} />
+      <Stack.Screen
+          name="MyTabs"
+          component={MyTabs}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="TownsScreen" component={TownsScreen} />
         <Stack.Screen name="BenderyScreen" component={BenderyScreen} />
@@ -64,11 +69,7 @@ const App: React.FC = () => {
         <Stack.Screen name="SlobodzeyaScreen" component={SlobodzeyaScreen} />
         <Stack.Screen name="TiraspolScreen" component={TiraspolScreen} />
         <Stack.Screen name="UserPageScreen" component={UserPageScreen} />
-        <Stack.Screen
-          name="MyTabs"
-          component={MyTabs}
-          options={{ headerShown: false }}
-        />
+        
       </Stack.Navigator>
     </NavigationContainer>
     </View>

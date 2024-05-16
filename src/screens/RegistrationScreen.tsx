@@ -5,14 +5,17 @@ import { useNavigation } from '@react-navigation/native';
 const RegistrtationScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  const navigateToMainScreen = () => {
-    navigation.navigate('MainScreen' as never);
+  const navigateToMyTabs = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'MyTabs' as never}],
+    });
   };
 
   return (
     <View>
       <Text>RegistrationScreen</Text>
-      <Button title="Go to MainScreen" onPress={navigateToMainScreen} />
+      <Button title="Go to ..." onPress={navigateToMyTabs} />
     </View>
   );
 };
