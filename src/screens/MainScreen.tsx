@@ -12,20 +12,12 @@ const Tab = createBottomTabNavigator();
 const MainScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  const navigateToTownsScreen = () => {
-    navigation.navigate('TownsScreen' as never);
-  };
-
-  const navigateToUserPageScreen = () => {
-    navigation.navigate('UserPageScreen' as never);
-  };
-
 
   return (
     <View>
-      <Text>MainScreen</Text>
-      <Button title="Go to TownsScreen" onPress={navigateToTownsScreen} />
-      <Button title="Go to UserPageScreen" onPress={navigateToUserPageScreen} />
+      <Text>Открой для себя Приднестровье!</Text>
+      <Text>Сувениры!</Text>
+      <Text>Факты!</Text>
     </View>
   );
 };

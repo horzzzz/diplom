@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import MainScreen from './src/screens/MainScreen';
@@ -27,6 +27,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { FIREBASE_AUTH } from './FirebaseConfig';
 
 
 const Tab = createBottomTabNavigator();
@@ -48,11 +50,22 @@ function MyTabs() {
 
 const Stack = createStackNavigator();
 const App: React.FC = () => {
+  const [user, setUser]=useState<User | null>(null);
+useEffect(()=>{
+  onAuthStateChanged(FIREBASE_AUTH, (user)=>{
+    console.log('user', user);
+    setUser(user);
+  });
+}, [])
   return (
     <View style = {{flex: 1}}>
     <NavigationContainer>
-      <Stack.Navigator >
-      <Stack.Screen name="RegistrationScreen" component={RegistrtationScreen} />
+      <Stack.Navigator initialRouteName='RegistrationScreen'>
+      {user ? (
+        <Stack.Screen name="Inside" component={MyTabs} options={ {headerShown: false} }/>
+      ):(
+        <Stack.Screen name="Login" component={RegistrtationScreen} options={ {headerShown: false} }/>
+      )}
       <Stack.Screen
           name="MyTabs"
           component={MyTabs}

@@ -40,14 +40,14 @@ const TownsScreen: React.FC = () => {
   return (
     <View>
       <Text>TownsScreen</Text>
-      <Button title="Go to BenderyScreen" onPress={navigateToBenderyScreen} />
-      <Button title="Go to DnestrovskScreen" onPress={navigateToDnestrovskScreen} />
-      <Button title="Go to DubossaryScreen" onPress={navigateToDubossaryScreen} />
-      <Button title="Go to GrigoriopolScreen" onPress={navigateToGrigoriopolScreen} />
-      <Button title="Go to KamenkaScreen" onPress={navigateToKamenkaScreen} />
-      <Button title="Go to RybnitsaScreen" onPress={navigateToRybnitsaScreen} />
-      <Button title="Go to SlobodzeyaScreen" onPress={navigateToSlobodzeyaScreen} />
-      <Button title="Go to TiraspolScreen" onPress={navigateToTiraspolScreen} />
+      <Button title="Tiraspol" onPress={navigateToTiraspolScreen} />
+      <Button title="Bendery" onPress={navigateToBenderyScreen} />
+      <Button title="Dnestrovsk" onPress={navigateToDnestrovskScreen} />
+      <Button title="Dubossary" onPress={navigateToDubossaryScreen} />
+      <Button title="Grigoriopol" onPress={navigateToGrigoriopolScreen} />
+      <Button title="Kamenka" onPress={navigateToKamenkaScreen} />
+      <Button title="Rybnitsa" onPress={navigateToRybnitsaScreen} />
+      <Button title="Slobodzeya" onPress={navigateToSlobodzeyaScreen} />
     </View>
   );
 };
