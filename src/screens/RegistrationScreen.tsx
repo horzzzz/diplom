@@ -1,21 +1,20 @@
 import React, {useState} from "react";
-import { FIREBASE_AUTH } from "../../FirebaseConfig";
+import auth from '@react-native-firebase/auth';
 import { StyleSheet, View, Alert, ActivityIndicator, Button, KeyboardAvoidingView } from "react-native";
-
 import { TextInput } from "react-native-gesture-handler";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
 
 const RegistrationScreen=()=> {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
+  
   
 
   const signIn = async()=>{
     setLoading(true);
     try{
-      const response = await signInWithEmailAndPassword(auth,email,password);
+      const response = await auth().signInWithEmailAndPassword(email, password);;
       console.log(response);
     } catch (error: any) {
       console.log(error);
@@ -28,7 +27,7 @@ const RegistrationScreen=()=> {
   const signUp = async()=>{
     setLoading(true);
     try{
-      const response = await createUserWithEmailAndPassword(auth,email,password);
+      const response = await auth().createUserWithEmailAndPassword(email, password);
       console.log(response);
       Alert.alert('Check your emails!')
     } catch (error: any) {

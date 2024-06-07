@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import MainScreen from './src/screens/MainScreen';
-import RegistrtationScreen from './src/screens/RegistrationScreen';
+import RegistrationScreen from './src/screens/RegistrationScreen';
 import TownsScreen from './src/screens/towns/TownsScreen';
 import BenderyScreen from './src/screens/towns/BenderyScreen';
 import DnestrovskScreen from './src/screens/towns/DnestrovskScreen';
@@ -15,6 +15,7 @@ import TiraspolScreen from './src/screens/towns/TiraspolScreen';
 import UserPageScreen from './src/screens/UserPageScreen';
 import FavoriteScreen from './src/screens/FavoriteScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 
 
@@ -27,8 +28,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { FIREBASE_AUTH } from './FirebaseConfig';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -50,13 +50,23 @@ function MyTabs() {
 
 const Stack = createStackNavigator();
 const App: React.FC = () => {
-  const [user, setUser]=useState<User | null>(null);
-useEffect(()=>{
-  onAuthStateChanged(FIREBASE_AUTH, (user)=>{
-    console.log('user', user);
-    setUser(user);
-  });
-}, [])
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged((user) => {
+      console.log('user', user);
+      setUser(user);
+    });
+  
+    // Unsubscribe from the listener when the component unmounts
+    return unsubscribe;
+  }, []);
+
+const logout = ()=> {
+  auth().signOut;
+  
+}
+
   return (
     <View style = {{flex: 1}}>
     <NavigationContainer>
@@ -64,7 +74,7 @@ useEffect(()=>{
       {user ? (
         <Stack.Screen name="Inside" component={MyTabs} options={ {headerShown: false} }/>
       ):(
-        <Stack.Screen name="Login" component={RegistrtationScreen} options={ {headerShown: false} }/>
+        <Stack.Screen name="Login" component={RegistrationScreen} options={ {headerShown: false} }/>
       )}
       <Stack.Screen
           name="MyTabs"
